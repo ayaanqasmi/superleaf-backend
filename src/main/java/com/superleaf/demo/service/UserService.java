@@ -23,6 +23,9 @@ public class UserService {
     public Optional<User> getUser(Long id) {
         return repo.findById(id);
     }
+     public User getUserByUsername(String name) {
+        return repo.findByUsername(name);
+    }
 
     public User createUser(User user) {
         return repo.save(user);
