@@ -22,8 +22,17 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> repository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return input -> {
+            if (input.contains("@")) {
+                // Treat input as email
+                return repository.findByEmail(input)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + input));
+            } else {
+                // Treat input as username
+                return repository.findByUsername(input)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + input));
+            }
+        };
     }
     @Bean
     public AuthenticationProvider authenticationProvider(){

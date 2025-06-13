@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Data                       // Generates getters, setters, toString, equals, hashCode
 @NoArgsConstructor            // Generates no-args constructor
 @AllArgsConstructor 
-
+@Builder
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
