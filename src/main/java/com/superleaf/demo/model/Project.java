@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(
     name = "projects",
@@ -29,6 +31,7 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
 
